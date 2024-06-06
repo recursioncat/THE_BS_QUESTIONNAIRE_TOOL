@@ -1,0 +1,5 @@
+Submit Button Checks
+    Sliders in Custom must add up to hundred.
+    There must be atleast one ticked option when perticular is selected.
+    Custom Jsonify to backend.
+
