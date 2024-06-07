@@ -25,6 +25,7 @@ function addOption(qid){
 
     checkbox(option, qid);
     setUpSlider();
+    boxChecker();
 }
 
 
@@ -95,6 +96,7 @@ function addQuestion() {
     attachEventListeners();
     setUpSlider();
     recalculateQuestionNumbers();
+    boxChecker();
 }
 
 
@@ -187,32 +189,6 @@ function recalculateQuestionNumbers() {
     });
 }
 
-// document.addEventListener('keyup', function(event) {
-//     // Check if the input event is triggered by a textarea with class 'question'
-//     if (event.target.classList.contains('question') || event.target.classList.contains('option-text')) {
-//         const textarea = event.target;
-//         console.log(textarea.scrollHeight);
-//         // Check if the scroll height is greater than the client height
-//         if (textarea.scrollHeight > textarea.clientHeight) {
-//             // Increase the height of the textarea to accommodate the wrapped text
-//             textarea.style.height = textarea.scrollHeight + 'px';
-//         }
-
-//         if (textarea.value === ""){
-//             textarea.style.height = textarea.scrollHeight + 'px';
-//         }
-
-//         // Apply overflow: hidden to hide any overflowing content
-//         textarea.style.overflow = 'hidden';
-//     }
-// });
-
-
-// function fixSize(textarea){
-//     if (textarea.scrollHeight <= 30) {
-//         textarea.style.height = 30 + 'px';
-//     }
-// }
 
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
@@ -224,3 +200,32 @@ function OnInput() {
   this.style.height = '30px';
   this.style.height = (this.scrollHeight) + "px";
 }
+
+function boxChecker(){
+    const boxes = document.querySelectorAll('.check');
+    boxes.forEach(box => {
+        box.addEventListener('input', (event) => {
+            event.preventDefault();
+            const target = event.target;
+            console.log("Hello");
+            const question = box.closest('.question-container');
+            console.log(question)
+            const checkboxes = question.querySelectorAll('.check');
+            console.log(checkboxes);
+            checkboxes.forEach(checkbox =>{
+                console.log("yoyo");
+                checkbox.checked = false;
+            });
+            if (!target.checked){
+                target.checked = true;
+            }
+            else{
+                target.checked = false;
+            }
+        });
+    });
+}
+
+boxChecker();
+
+

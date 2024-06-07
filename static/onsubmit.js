@@ -26,15 +26,92 @@ function alertContainer(question){
         }, 2000);
 }
 
+function checkOptionTicked(question){
+    const boxes = question.querySelectorAll('.check');
+    for (let i = 0; i < boxes.length; i++) {
+        if(boxes[i].checked){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 function generate(){
     const containers = document.querySelectorAll(".question-container");
-    containers.forEach(container => {
-        if (container.querySelector('#question-type').value === "MCQ"  &&  container.querySelector('#selection').value === "Custom"){
-            if (!checkOptionValues(container)){
+    for (let i = 0; i < containers.length; i++) {
+        const container = containers[i];
+        
+        if (container.querySelector('#question-type').value === "MCQ" && container.querySelector('#selection').value === "Custom") {
+            if (!checkOptionValues(container)) {
                 alertContainer(container);
-                alert("Values must add up to a Hundred")
+                alert("Values must add up to a Hundred");
+                return;
+            }
+        } 
+            
+        else if (container.querySelector('#question-type').value === "MCQ" && container.querySelector('#selection').value === "Perticular") {
+            if (!checkOptionTicked(container)) {
+                alertContainer(container);
+                alert("Please Tick One box for the answer");
+                return;
             }
         }
+    }
+
+    generateJSON();
+}
+
+
+function generateJSON(){
+    // Layer 1 : Whole Questionnaire
+    const mainForm = document.querySelector('main');
+    const copies = document.getElementById('copies').value;
+    const title = mainForm.querySelector('.h1').value;
+    const detail = mainForm.querySelector('.additional').textContent;
+
+    // Layer 2 : Questions
+    const questions = document.querySelectorAll('.question-container');
+    let listOfQuestions = []
+    questions.forEach( question => {
+        const questionText = question.querySelector('.question').value;
+        const questionType = question.querySelector('#question-type').value;
+        const algoType = question.querySelector('#selection').value;
+
+        // Layer 3 : Options
+        let optionList = []
+        const options =  question.querySelectorAll(".option-container");
+        options.forEach( option => {
+            const check = option.querySelector('.check').checked;
+            const optionText = option.querySelector('.option-text').value;
+            const value = Number(option.querySelector('.slider-value').value)/100;
+
+            const optionDetail = {
+                check: check,
+                text: optionText,
+                value: value
+            }
+            optionList.push(optionDetail);
+        } );
+
+        const questionDetail = {
+            text: questionText,
+            type: questionType,
+            algo: algoType,
+            optionList: optionList
+        }
+
+        listOfQuestions.push(questionDetail);
+
     });
+
+    const completeJSON = {
+        amount : copies,
+        title: title,
+        detail: detail,
+        questions: listOfQuestions
+    }
+
+    console.log(JSON.stringify(completeJSON, null, 2));
+    return completeJSON;
 }

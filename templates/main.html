@@ -11,52 +11,48 @@
 </head>
 <body>
     <main>
-      <div class="header">
-          <input class="h1" type="text" placeholder="Enter a Name" value="Untitled Questionnaire">
-          <p class="additional">Lorem ipsum dolor sit amet consectetur <br>adipisicing elit Minima corrupti ducimus aliquid.</p>
-          <div class="details">
-              <p>Total Marks: 50</p>
-              <p>Total Time: 1 Hour</p>
-          </div>   
-      </div>
-  
-      <div draggable="true" class="question-container" id="question1">
-        <div class="top-region">
-            <div>
-                <i id="grip" class="fa-solid fa-grip-vertical"></i>
-                <p class="question-number">Question 1</p>
-            </div>
-            <div class="properties">
-                <select id="question-type" onchange="changeLayout(this, 'question1')">
-                  <option>MCQ</option>
-                  <option>Open-Ended</option>
-                </select>
-      
-                <select onchange="giveSlider(this, 'question1'); checkbox(this, 'question1');" id="selection">
-                  <option>Random</option>
-                  <option>Perticular</option>
-                  <option>Custom</option>
-                </select>
-                
-                <button class="removeQuestion" onclick="removeQuestion('question1')"><i class="fa-regular fa-circle-xmark"></i></button>
-            </div>
+        <div class="header">
+            <input class="h1" type="text" placeholder="Enter a Name" value="Untitled Questionnaire">
+            <p class="additional">Lorem ipsum dolor sit amet consectetur <br>adipisicing elit Minima corrupti ducimus aliquid.</p>
         </div>
-        <textarea class="question" type="text" placeholder="Write a Question Like Who won WW2?"></textarea>
-        <div id="holder">
-            <div class="option-container">
+    
+        <div draggable="true" class="question-container" id="question1">
+            <div class="top-region">
                 <div>
-                    <input class="check" type="checkbox">
-                    <textarea class="option-text" type="text" placeholder="Write an Option Like The Allies"></textarea>
+                    <i id="grip" class="fa-solid fa-grip-vertical"></i>
+                    <p class="question-number">Question 1</p>
                 </div>
-                <div class="slider-container">
-                    <input class="slider" type="range" min="0" max="100" value="0">
-                    <input class="slider-value" value="0"> %
+                <div class="properties">
+                    <select id="question-type" onchange="changeLayout(this, 'question1')">
+                    <option>MCQ</option>
+                    <option>Open-Ended</option>
+                    </select>
+        
+                    <select onchange="giveSlider(this, 'question1'); checkbox(this, 'question1');" id="selection">
+                    <option>Random</option>
+                    <option>Perticular</option>
+                    <option>Custom</option>
+                    </select>
+                    
+                    <button class="removeQuestion" onclick="removeQuestion('question1')"><i class="fa-regular fa-circle-xmark"></i></button>
                 </div>
             </div>
+            <textarea class="question" type="text" placeholder="Write a Question Like Who won WW2?"></textarea>
+            <div id="holder">
+                <div class="option-container">
+                    <div>
+                        <input class="check" type="checkbox">
+                        <textarea class="option-text" type="text" placeholder="Write an Option Like The Allies"></textarea>
+                    </div>
+                    <div class="slider-container">
+                        <input class="slider" type="range" min="0" max="100" value="0">
+                        <input class="slider-value" value="0"> %
+                    </div>
+                </div>
+            </div>
+            <button class="add-btn-option" onclick="addOption('question1')">Add An Option</button>
+            <button id="rem" class="add-btn-option" onclick="removeOption('question1')">Remove An Option</button>
         </div>
-        <button class="add-btn-option" onclick="addOption('question1')">Add An Option</button>
-        <button id="rem" class="add-btn-option" onclick="removeOption('question1')">Remove An Option</button>
-    </div>
     </main>
 
 
@@ -68,7 +64,7 @@
     <div class="final-cont">
         <div>
             <p>Number of Copies: </p>
-            <input type="number" value="100" min="1" max="1000">
+            <input id="copies" type="number" value="100" min="1" max="1000">
         </div>
         <button onclick="generate()" class="final">Generate</button>
     </div>

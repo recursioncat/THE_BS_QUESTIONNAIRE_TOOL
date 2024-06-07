@@ -72,7 +72,6 @@ function getDragAfterElement(y){
 }
 
 function disableDrag(){
-    console.log("Drag Disabled");
     const draggeableObj = document.querySelectorAll('.question-container');
     draggeableObj.forEach( obj => {
         obj.draggable = false;
@@ -80,7 +79,6 @@ function disableDrag(){
 }
 
 function enableDrag(){
-    console.log("Drag Enabled");
     const draggeableObj = document.querySelectorAll('.question-container');
     draggeableObj.forEach( obj => {
         obj.draggable = true;

@@ -1,5 +1,5 @@
+question and option fields must not be empty
+
 Submit Button Checks
-    Sliders in Custom must add up to hundred.
-    There must be atleast one ticked option when perticular is selected.
-    Custom Jsonify to backend.
+    Custom Jsonify to backend// Checks for open ended question
 
