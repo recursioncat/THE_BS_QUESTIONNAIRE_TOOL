@@ -36,6 +36,27 @@ function checkOptionTicked(question){
     return false;
 }
 
+function checkInputs(){
+    let flag = 0;
+    const inputs = document.querySelectorAll('textarea:not([readonly])');
+    console.log(inputs[0])
+    for (let i = 0; i < inputs.length; i++){
+        if (inputs[i].value === ""){
+            flag = 1;
+            break;
+        }
+    }
+
+    if(flag !== 0){
+        return false;
+    }
+
+    else{
+        return true;
+    }
+    
+}
+
 
 function generate(){
     const containers = document.querySelectorAll(".question-container");
@@ -57,6 +78,12 @@ function generate(){
                 return;
             }
         }
+
+    }
+        
+    if (!checkInputs()){
+        alert("All Questions and Answers must have value");
+        return;
     }
 
     generateJSON();
@@ -113,5 +140,18 @@ function generateJSON(){
     }
 
     console.log(JSON.stringify(completeJSON, null, 2));
-    return completeJSON;
+
+    // Create a form and submit it to /process
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/process-questionnaire';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(completeJSON);
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
 }
