@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your File is Ready</title>
+</head>
+<body>
+    <button onclick="download()">Download Your File</button>
+    <script>
+        function download(){
+            const path = `{{ path }}` + "/output.html";
+            console.log("../"+path)
+            const file = window.open('../'+path);
+            file.print();
+        }
+    </script>
+</body>
+</html>

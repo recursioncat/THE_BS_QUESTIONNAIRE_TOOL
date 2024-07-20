@@ -1,8 +1,12 @@
-from flask import Flask, redirect, render_template, request, json
-from Server.questionnaire1 import Question
-
+from flask import Flask, redirect, render_template, request, session, send_from_directory
+from Server.randomstring import genString
+from Server.JSONParser import parse
+import os
+import shutil
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('Flask_Secret_key')
+list_of_Users = []
 
 @app.route("/")
 def main():
@@ -10,48 +14,40 @@ def main():
 
 @app.route("/home")
 def home():
-    return render_template("main.html")
+    return render_template("Homepage.html")
+
+@app.route("/new-questionnaire", methods = ['GET'])
+def newRoom():
+    id = genString(20)
+    while id in list_of_Users:
+        id = genString(20)
+
+    session["id"] = id
+    os.mkdir(f"users/{id}")
+    list_of_Users.append(id)
+
+    session["path"] = f'Users/{id}'
+    shutil.copytree('HTML MAPPER', session["path"], dirs_exist_ok=True)
+    return render_template('main.html')
 
 
 @app.route("/process-questionnaire", methods=['POST'])
 def processQuestionnaire():
-    data = request.form['data']
-    questionnaire = json.loads(data)
-    nums = questionnaire["amount"]
+    try: 
+        print("inside pq")
+        data = request.form['data']
+        print("Request Parsed")
+        parse(data)
+        print("parsed")
+        return render_template("DownloadReady.html", path = session["path"])
 
-
-    listOfQuestions = []
-    for i, question in enumerate(questionnaire["questions"]):
-        option_list = []
-        option_value = []
-        options = question["optionList"]
-        for option in options:
-            option_list.append(option["text"])
-            option_value.append(option["value"])
-
-        obj = Question(i+1, question["text"], option_list, option_value, 10)
-        print("weightList: ")
-        obj.weights.show()
-        listOfQuestions.append(obj)
-
-    for i in range(10):
-        print(questionnaire["title"])
-        for question in listOfQuestions:
-            print(question.questionNumber, " ", end="")
-            print(question.questionText)
-
-            for i, option in enumerate(question.optionsList):
-                print("\t", i+1, ". ", end = "")
-                print("\t", option, end = "")
-
-                if i == question.weights.top():
-                    print(" (Ans)")
-                else:
-                    print()
-
-            question.weights.pop()
-
+    except Exception as e:
+        return e
     
-    return "SUCCESS"
+@app.route('/Users/<path:filename>')
+def serve_user_file(filename):
+    return send_from_directory('Users', filename)
+
+
 
 app.run(debug=True)

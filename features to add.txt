@@ -1,5 +1,0 @@
-question and option fields must not be empty
-
-Submit Button Checks
-    Custom Jsonify to backend// Checks for open ended question
-
