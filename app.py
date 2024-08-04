@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, send_from_directory
 from Server.randomstring import genString
-from Server.JSONParser import parse
+from Server.JSONParser import makeQuestionnaire
 import os
 import shutil
 
@@ -33,21 +33,18 @@ def newRoom():
 
 @app.route("/process-questionnaire", methods=['POST'])
 def processQuestionnaire():
-    try: 
-        print("inside pq")
-        data = request.form['data']
-        print("Request Parsed")
-        parse(data)
-        print("parsed")
-        return render_template("DownloadReady.html", path = session["path"])
+    # try: 
+    data = request.form['data']
+    makeQuestionnaire(data)
+    return render_template("DownloadReady.html", path = session["path"])
 
-    except Exception as e:
-        return e
+    # except Exception as e:
+    #     return str(e)
     
 @app.route('/Users/<path:filename>')
 def serve_user_file(filename):
     return send_from_directory('Users', filename)
 
 
-
-app.run(debug=True)
+if __name__=="__main__":
+    app.run(debug=True)

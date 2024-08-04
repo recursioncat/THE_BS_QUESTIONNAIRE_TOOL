@@ -19,4 +19,7 @@ class stack:
 
     def show(self):
         print(self.data[::-1])
+
+    def showWhole(self):
+        return self.data
         

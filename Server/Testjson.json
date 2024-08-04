@@ -1,61 +1,4 @@
-from .QuestionnaireParser import parse
-from flask import session
-import json
-from .mapper import *
-from .grapher import graphOut
-
-def makeQuestionnaire(jsonFile:str):
-    data = json.loads(jsonFile)
-    title = data['title']
-    itterations = int(data['amount'])
-
-    listOfQuestions = parse(jsonFile)
-    # HTMLMapper = Mapper("Server"+"/"+"output.html")
-    HTMLMapper = Mapper(session['path']+"/"+"output.html")
-    question_numbers_with_graph = []
-    
-    # Questions
-    for i in range(itterations): #change
-        HTMLMapper.add_heading(title)
-        for question in listOfQuestions:
-
-            if question.type == 'MCQ':
-                list_of_options = [i for _,i in question.options]
-                list_of_option_values = question.option_temp
-
-                # print("Here are em Options: ",question.options)
-                # print("Here is what we got: ", list_of_options, "and", list_of_option_values )
-
-                Ques = HTMLQuestion(str(question.number)+ '.' + question.text, list_of_options, question.weightlist.top())
-                question.weightlist.pop()
-                HTMLMapper.add_question(Ques)
-
-                graphOut(list_of_options, list_of_option_values,session['path'], True, question.number, question.text)
-                if i == 0:
-                    question_numbers_with_graph.append(question.number)
-
-
-            elif question.type == 'Open-Ended':
-                HTMLMapper.add_open_ended_question(str(question.number)+ '.' + question.text)
-            
-            else:
-                raise Exception("Question Type Not Understood, Question passed was neither MCQ nor Open-Ended")
-        
-        HTMLMapper.insert_page_break()
-    
-
-    #Graphs
-    HTMLMapper.add_heading("Graphs/Data")
-    for question_number in question_numbers_with_graph:
-        HTMLMapper.add_graph(str(question_number)+'.png')
-
-
-    HTMLMapper.close()
-
-
-if __name__ == "__main__":
-    makeQuestionnaire('''
-    {
+{
    "amount":"100",
    "title":"Let's Talk About the Beatles",
    "detail":"Lorem ipsum dolor sit amet consectetur adipisicing elit Minima corrupti ducimus aliquid.",
@@ -156,9 +99,37 @@ if __name__ == "__main__":
       }
    ]
 }
-''')
-
-    pass
 
 
 
+
+
+
+
+
+
+
+
+
+[
+    {
+       "check":false,
+       "text":"John",
+       "value":0
+    },
+    {
+       "check":false,
+       "text":"Paul",
+       "value":0
+    },
+    {
+       "check":false,
+       "text":"George",
+       "value":0
+    },
+    {
+       "check":false,
+       "text":"Ringo",
+       "value":0
+    }
+ ]

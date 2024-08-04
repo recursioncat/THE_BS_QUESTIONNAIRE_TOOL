@@ -1,5 +1,6 @@
 import random
 
+
 class UnfinishedList(Exception):
     pass
 
