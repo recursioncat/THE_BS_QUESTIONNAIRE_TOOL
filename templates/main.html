@@ -2,18 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/8677a1a9c2.js" crossorigin="anonymous"></script>   
-<title>Questionnaire</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8677a1a9c2.js" crossorigin="anonymous"></script>   
+    <title>Questionnaire</title>
 </head>
 <body>
     <main>
         <div class="header">
             <input class="h1" type="text" placeholder="Enter a Name" value="Untitled Questionnaire">
-            <p class="additional">Lorem ipsum dolor sit amet consectetur <br>adipisicing elit Minima corrupti ducimus aliquid.</p>
+            <textarea class="additional">Enter a Subheading, this is optional and can be removed from the final document.</textarea>
         </div>
     
         <div draggable="true" class="question-container" id="question1">
@@ -64,9 +65,41 @@
     <div class="final-cont">
         <div>
             <p>Number of Copies: </p>
-            <input id="copies" type="number" value="100" min="1" max="1000">
+            <input id="copies" type="number" value="10" min="1" max="1000">
         </div>
-        <button onclick="generate()" class="final">Generate</button>
+        <button onclick="openSettings()" class="final">Next</button>
+    </div>
+
+    <div class="hidden-overlay hidden"></div>
+    <div class="Settings hidden">
+        <div class="sty">
+            <h2>Additional Settings</h2>
+            <button class="removeQuestion" onclick="closeSettings()"><i class="fa-regular fa-circle-xmark"></i></button>
+        </div>
+        
+        <div>
+            <input id="subh" type="checkbox" name="subheading-include">
+            <label for="subheading-include">Include Sub-heading</label>
+        </div>
+
+        <hr>
+        
+        <div>
+            <input id="graphs" checked type="checkbox" name="graph-status">
+            <label for="graph-status">Include Graphs</label>
+        </div>
+
+        <hr>
+
+        <div class="sty">
+            <label for="graph-type">Enter Graph Type</label>
+            <select id="grapht" name="graph-type">
+                <option>Bar</option>
+                <option selected>Pie</option>
+            </select>
+        </div>
+
+        <button onclick="generate()">Generate</button>
     </div>
     
 

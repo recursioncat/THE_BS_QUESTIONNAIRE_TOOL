@@ -6,8 +6,13 @@ from .grapher import graphOut
 
 def makeQuestionnaire(jsonFile:str):
     data = json.loads(jsonFile)
+    print(data)
     title = data['title']
     itterations = int(data['amount'])
+    ShowSubHeading = data['subhead']
+    ShowGraphs = data['graphs']
+    GraphType = data['grapht']
+    subHeadingText = data['detail']
 
     listOfQuestions = parse(jsonFile)
     # HTMLMapper = Mapper("Server"+"/"+"output.html")
@@ -17,6 +22,8 @@ def makeQuestionnaire(jsonFile:str):
     # Questions
     for i in range(itterations): #change
         HTMLMapper.add_heading(title)
+        if(ShowSubHeading):
+           HTMLMapper.add_subheading(subHeadingText)
         for question in listOfQuestions:
 
             if question.type == 'MCQ':
@@ -29,10 +36,11 @@ def makeQuestionnaire(jsonFile:str):
                 Ques = HTMLQuestion(str(question.number)+ '.' + question.text, list_of_options, question.weightlist.top())
                 question.weightlist.pop()
                 HTMLMapper.add_question(Ques)
-
-                graphOut(list_of_options, list_of_option_values,session['path'], True, question.number, question.text)
-                if i == 0:
-                    question_numbers_with_graph.append(question.number)
+               
+                if (ShowGraphs):
+                  graphOut(list_of_options, list_of_option_values,session['path'], True, question.number, question.text, GraphType)
+                  if i == 0:
+                     question_numbers_with_graph.append(question.number)
 
 
             elif question.type == 'Open-Ended':
@@ -45,9 +53,10 @@ def makeQuestionnaire(jsonFile:str):
     
 
     #Graphs
-    HTMLMapper.add_heading("Graphs/Data")
-    for question_number in question_numbers_with_graph:
-        HTMLMapper.add_graph(str(question_number)+'.png')
+    if (ShowGraphs):
+      HTMLMapper.add_heading("Graphs/Data")
+      for question_number in question_numbers_with_graph:
+         HTMLMapper.add_graph(str(question_number)+'.png')
 
 
     HTMLMapper.close()

@@ -76,6 +76,9 @@ class Mapper:
     def add_heading(self, text):
         self.file.write(f"<h1>{text}</h1>\n")
 
+    def add_subheading(self, text):
+        self.file.write(f"<h2>{text}</h2>\n")
+
     def insert_page_break(self):
         self.file.write('<div class="page-break"></div>\n')
 

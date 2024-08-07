@@ -2,9 +2,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BS Questionnaire Tool: Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/homepage.css')}}">
 </head>
 <body>
-    <a href="/new-questionnaire"><button>Start a New Questionnaire</button></a>
+    <main>
+        <img draggable="false" class="logo" src="{{ url_for('static', filename='Images/logo 1.png') }}">
+        <h1 class="head">Generate Questionnaires and Fake Data for<span class="subhead"> those <span>BullSh#t</span> projects Quickly</span> </h1>
+        <p class="entername">Enter a Username to start</p>
+        
+        <form class="input-region" method="POST" action="/new-questionnaire">
+            <input required placeholder="Enter a Username" type="text" name="Username">
+            <button type="submit">Go</button>
+        </form>
+
+        <p class="info">You can enter Anything you want as long as you can remember it and it's within <bold>20 charecters</bold>...this username is used to keep your pdf safe. It is Temporary and will not be saved.</p>
+
+        <div class="nav">
+            <a href="/docs"><p class="menu">Tutorial</p></a>
+            <p class="menu dot">&#183;</p>
+            <a href="/about"><p class="menu">About</p></a>
+            <p class="menu dot">&#183;</p>
+            <a href="/feedback"><p class="menu">Feedback</p></a>
+        </div>
+
+
+    </main>
+
+    {% with messeges = get_flashed_messages() %}
+        {% if messeges %}
+            {% for message in messeges %}
+            <script>
+                alert(`{{ message }}`);
+            </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>

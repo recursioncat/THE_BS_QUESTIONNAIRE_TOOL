@@ -1,0 +1,116 @@
+body{
+    background-image: url(../Images/pixie\ background.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 20px 20px;
+    padding: 0;
+    margin: 0;
+}
+
+main{
+    width: 95vw;
+    height: 93vh;
+    background-color: #242020;
+    border-radius: 20px;
+    border: 4px solid var(--BSBlue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+.logo{
+    width: 400px;
+}
+
+.head{
+    margin-bottom: 10px;
+    max-width: 1248px;
+}
+
+.subhead{
+    color: white;
+    font-family: Raleway;
+    font-size: 43px;
+    margin-top: 0;
+}
+
+span{
+    color: var(--BSBlue);
+}
+
+.entername{
+    font-size: 26px;
+    color: rgb(153, 153, 153);
+    margin-bottom: 5px;
+    margin-top: 70px;
+}
+
+.input-region > input{
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 20px;
+    border-radius: 15px;
+    outline: none;
+    background-color: #242020;
+    border: 3px solid white;
+    transition: all 0.6s;
+}
+
+.input-region > input:focus{
+    border: 3px solid var(--BSBlue);
+}
+
+.input-region > button{
+    width: 20%;
+    border-radius: 20px;
+    background-color: var(--BSBlue);
+    border: none;
+    font-size: 25px;
+    padding: 5px 20px;
+    font-weight: 600;
+}
+
+.input-region{
+    width: 50%;
+    margin: 5px auto;
+    display: flex;
+    gap: 10px;
+    max-width: 652px;
+}
+
+.info{
+    width: 50%;
+    margin-top: 5px;
+    font-size: 14px;
+    color:rgb(153, 153, 153);
+    text-align: center;
+    max-width: 665px;
+}
+
+.nav{
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0px;
+}
+
+.menu{
+    color: rgb(153, 153, 153);
+    transition: all 0.6s;    
+}
+
+a{
+    text-decoration: none;
+}
+
+.menu:not(.dot):hover{
+    color: white;
+    cursor: pointer;
+    transform: scale(105%);
+}
+

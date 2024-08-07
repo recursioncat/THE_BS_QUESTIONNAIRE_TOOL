@@ -1,0 +1,19 @@
+:root{
+    --BSBlue: #5e3fb6;
+    --BSDark: #242020;
+    --BSAdd: #83B4FF;
+    --BSRemove: #DC5F00;
+    --BSLightBlack: rgb(61, 61, 61);
+    --BSSubmit: #5A72A0;
+}
+
+*{
+    font-family: 'Raleway';
+    box-sizing: border-box;
+    color: white;
+}
+
+h1{
+    font-size: 50px;
+    text-align: center;
+}

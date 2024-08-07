@@ -1,3 +1,19 @@
+function openSettings(){
+    const overlay = document.querySelector('.hidden-overlay');
+    const settings = document.querySelector('.Settings');
+    overlay.classList.remove('hidden');
+    settings.classList.remove('hidden');
+}
+
+function closeSettings(){
+    const overlay = document.querySelector('.hidden-overlay');
+    const settings = document.querySelector('.Settings');
+    overlay.classList.add('hidden');
+    settings.classList.add('hidden');
+}
+
+
+
 function checkOptionValues(Question){
     const values = Question.querySelectorAll('.slider-value');
     let sum = 0;
@@ -65,6 +81,7 @@ function generate(){
         
         if (container.querySelector('#question-type').value === "MCQ" && container.querySelector('#selection').value === "Custom") {
             if (!checkOptionValues(container)) {
+                closeSettings();
                 alertContainer(container);
                 alert("Values must add up to a Hundred");
                 return;
@@ -73,6 +90,7 @@ function generate(){
             
         else if (container.querySelector('#question-type').value === "MCQ" && container.querySelector('#selection').value === "Perticular") {
             if (!checkOptionTicked(container)) {
+                closeSettings();
                 alertContainer(container);
                 alert("Please Tick One box for the answer");
                 return;
@@ -82,6 +100,7 @@ function generate(){
     }
         
     if (!checkInputs()){
+        closeSettings();
         alert("All Questions and Answers must have value");
         return;
     }
@@ -95,7 +114,10 @@ function generateJSON(){
     const mainForm = document.querySelector('main');
     const copies = document.getElementById('copies').value;
     const title = mainForm.querySelector('.h1').value;
-    const detail = mainForm.querySelector('.additional').textContent;
+    const detail = mainForm.querySelector('.additional').value;
+    const includeSubHeading = document.querySelector('#subh').checked;
+    const includeGraphs = document.querySelector('#graphs').checked;
+    const graphType = document.querySelector('#grapht').value;
 
     // Layer 2 : Questions
     const questions = document.querySelectorAll('.question-container');
@@ -135,6 +157,9 @@ function generateJSON(){
     const completeJSON = {
         amount : copies,
         title: title,
+        subhead: includeSubHeading,
+        graphs: includeGraphs,
+        grapht: graphType,
         detail: detail,
         questions: listOfQuestions
     }
@@ -155,3 +180,4 @@ function generateJSON(){
     document.body.appendChild(form);
     form.submit();
 }
+

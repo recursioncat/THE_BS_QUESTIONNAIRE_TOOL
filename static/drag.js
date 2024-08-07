@@ -6,7 +6,7 @@ let isDragging = false;
 function turnWhite(){
     all = document.querySelectorAll('.question-container');
     all.forEach(element => {
-        element.style.backgroundColor = "white";
+        element.style.backgroundColor = "rgb(61, 61, 61)";
         element.style.filter = "blur(0px)";
     });
 }

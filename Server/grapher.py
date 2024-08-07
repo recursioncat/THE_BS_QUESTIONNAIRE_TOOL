@@ -1,21 +1,25 @@
 import matplotlib.pyplot as plt
 
 
-def graphOut(optionTexts:list, optionValues:list, pathToSave:str, legend:str, questionNumber, questionText):
+def graphOut(optionTexts:list, optionValues:list, pathToSave:str, legend:str, questionNumber, questionText, type):
     
     plt.title(questionText)
     print("option Values form graph :", optionValues)
 
-    if legend == True:
-        plt.pie(optionValues, autopct="%1.2f%%")
-        plt.legend(optionTexts, loc="lower left", bbox_to_anchor = (1,0))
-    
-    elif legend == False:
-        plt.pie(optionValues, labels=optionTexts, autopct="%1.2f%%")
+    if type == 'Pie':
+        if legend == True:
+            plt.pie(optionValues, autopct="%1.2f%%")
+            plt.legend(optionTexts, loc="lower left", bbox_to_anchor = (1,0))
+        
+        elif legend == False:
+            plt.pie(optionValues, labels=optionTexts, autopct="%1.2f%%")
 
-    elif legend == "Both":
-           plt.pie(optionValues, labels=optionTexts, autopct="%1.2f%%")
-           plt.legend(optionTexts, loc="lower left", bbox_to_anchor = (1,0))
+        elif legend == "Both":
+            plt.pie(optionValues, labels=optionTexts, autopct="%1.2f%%")
+            plt.legend(optionTexts, loc="lower left", bbox_to_anchor = (1,0))
+
+    elif type == 'Bar':
+        plt.bar(optionTexts, optionValues)
 
     plt.savefig(f"{pathToSave}/{questionNumber}.png")
     plt.close() 
@@ -29,4 +33,4 @@ if __name__ == "__main__":
      ]
 
      for option in listOfGraphs:
-          graphOut(option[0], option[1], option[2], option[3], option[4], option[5] )
+          graphOut(option[0], option[1], option[2], option[3], option[4], option[5],'Bar' )
