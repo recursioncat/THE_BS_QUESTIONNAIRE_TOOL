@@ -36,8 +36,12 @@ def newRoom():
         flash('Please Enter Another Username\nWhat are the Chances!\nSomeone else is using that username')
         return redirect(url_for('.home'))
     
+    if len(id) < 5:
+        flash('Whoops! Please enter an username at least 5 characters long.')
+        return redirect(url_for('.home'))
+
     if len(id) > 20:
-        flash('Whoops! Please enter an usename within 20 charecters.')
+        flash('Whoops! Please enter an username within 20 characters.')
         return redirect(url_for('.home'))
 
     session["id"] = id

@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCS: BS Questionnaire Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/docs.css') }}">
+    <script src="https://kit.fontawesome.com/8677a1a9c2.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='goto.js') }}" defer></script>
+</head>
+<body>
+    <div class="header">
+        <img draggable="false" class="small-logo" src="{{ url_for('static', filename='Images/logo 1.png') }}">
+        <h1>Docs: <span>Questionnaire</span> Tool</h1>
+    </div>
+    <main>
+        <div class="chapters">
+            <h1>Chapters</h1>
+            <hr class="chapterhr">
+            <div class="chap-container">
+                <p onclick="goto(1)" class="head">Get Started</p>
+                <p onclick="goto(2)" class="subhead">Introduction</p>
+                <p onclick="goto(3)" class="subhead">Homepage</p>
+                <p onclick="goto(4)" class="head">Create a Questionnaire</p>
+                <p onclick="goto(5)" class="subhead">Add Questions and Options</p>
+                <p onclick="goto(6)" class="subhead">Types of Questions</p>
+                <p onclick="goto(7)" class="subhead">Types of Algorithm</p>
+                <p onclick="goto(8)" class="subhead">Additional Options</p>
+                <p onclick="goto(9)" class="head">Download Your Questionnaire</p>
+                <p onclick="goto(10)" class="head">Upcoming Features</p>
+            </div>        
+        </div>
+        <div class="docs">
+            <h1 id="1" class="left">Get Started</h1>
+            <hr>
+            <h2 id="2">Introduction</h2>
+            <p class="main-body">What is the Bullshit Questionnaire Tool? Surveys and data collection are crucial in all fields of science, but let’s be honest—most of the surveys we’re tasked with in school or college are boring, repetitive, and lead to results no one actually cares about. Enter the Bullshit Questionnaire Tool, your escape from that monotony.<br>
+            This tool lets you generate and fake survey data in a predetermined fashion, giving you the freedom to decide the outcomes. Instead of slogging through meaningless questions with obvious answers, you can input how each question's response should be generated. The result? A customized PDF complete with questionnaires and data charts that look legit, but are pure BS—just like the surveys you’re used to.</p>
+
+            <h2 id="3">Homepage</h2>
+            <p class="main-body">Go to the Homepage, just Enter a Username and click on go. The username is used to differentiate your file and keep it secure. While there you can also check out how this page was made or send me a feedback from the navigation options below. Keep in mind the username has to be <b>5-20 characters</b>  long.</p>
+
+            <h1 id="4" class="left">Create a Questionnaire</h1>
+            <hr>
+            <p class="main-body">Once you create a Questionnaire, you will be greeted with something like this.</p>
+            <img src="{{ url_for('static', filename='Images/wholepage.png') }}" class="ref">
+            <p class="main-body">You can click on <b>Untitled Questionnaire</b> to change the Questionnaire Title, Click on the <b>subheading box</b> to Write and Use a Subheading. The <b>number of copies</b> at the bottom left corner signifies how many respondents you would require for your Questionnaire.</p>
+
+
+            <h2 id="5">Add/Remove Questions and Options</h2>
+            <p class="main-body">Hover and click on the <b>Add a Question</b> text at the bottom of the document, this will append a question at the end of your Questionnaire. You can then click the <i class="fa-solid fa-grip"></i> button to drag and rearrange your Questionnaire as you like. To remove a Question simply click on the <i class="fa-regular fa-circle-xmark"></i> icon at the upper right corner of the desired Question.<br>
+            Adding an Option will Only work for MCQ type Questions (Obvio...duh....), where you can see an <b>Add An Option</b> button, this will add an option to the end of your Question, however, you cannot rearrange option order for now. To remove an Option, click on the <b>Remove an Option</b> button, keep in mind, <b><i>this will remove the Last Option only.</i></b> </p>
+            <hr>
+            
+            <img src="{{ url_for('static', filename='Images/option.png') }}" class="ref2">
+            <p class="main-body">Every Question will by default have 2 drop boxes on the top right corner. The First One is the type of question and the second one is type of algorithm.</p>
+
+            <h2 id="6">Types of Questions</h2>
+            <p class="main-body">Currently the BS Questionnaire Tool supports only 2 types of questions, <b>MCQ</b> and <b>Open-Ended</b>. For MCQ Questions the tool supports different algorithms for generating answers but Open ended Questions are left blank with just the Question in the final PDF. Will look forward to those as I increase my AI skills.</p>
+
+            <h2 id="7">Types of Algorithms</h2>
+            <p class="main-body">Algorithms determine how the answers for each question will be calculated. Here is a Summary.</p>
+            <ul>
+                <li class="main-body"><b>Random</b>: Will assign an option at random for each copy of the questionnaire.</li>
+                <li class="main-body"><b>Particular</b>: All Copies of the Questionnaire will only have one particular option. Checkboxes will appear beside each option and the one that is selected will be treated as the particular option</li>
+                <li class="main-body"><b>Custom</b>: You can choose what percentage of your final respondents will choose a particular option. Sliders will appear next to each option where you can put in custom percentage values. However keep in mind since it is a percentage all option values in a question must add up to a 100.</li>
+            </ul>
+
+            <h2 id="8">Additional Options</h2>
+            <p class="main-body">Once You are done setting up your Questionnaire you can click on the next button on the bottom right corner. This will reveal some other additional options.</p>
+            <img src="{{ url_for('static', filename='Images/addop.png') }}" class="ref3">
+            <p class="main-body">Your changes here will affect the look of the final document. Here is a Break Down of all the options:-</p>
+            <ul>
+                <li class="main-body"><b>Include Sub-heading</b>: Adds the subheading in the final PDF. By default it will just add the main heading at the top of each response.</li>
+                <li class="main-body"><b>Include Graphs</b>: Add or Remove the data visualization section in your pdf.</li>
+                <li class="main-body"><b>Enter Graph Type</b>: Lets you choose between A bar graph and a pie chart for data visualization in the final pdf.</li>
+            </ul>
+
+            <h1 id="9" class="left">Download Your Questionnaire</h1>
+            <hr>
+            <p class="main-body">Click on the Generate option once you are done. PDF generation will be in progress. Once done, click on the <b>Download</b> button. You will be redirected to a page with your questionnaire and the <b>Print Dialogue Box</b> will open automatically. Preview your Document. Change <b>Destination</b> to Save as pdf and format as desired. Click on save and download your file.</p>
+
+            <img src="{{ url_for('static', filename='Images/redirect.png') }}" class="ref4">
+            <img src="{{ url_for('static', filename='Images/finalstep.png') }}" class="ref4">
+
+            <h1 class="left" id="10">Upcoming Features</h1>
+            <hr>
+            <p class="main-body">Here is a list of items I wish to implement in the next version.</p>
+            <ul>
+                <li class="main-body">1. <b>Slide Around Options</b>: Adding grips to options to be able to slide them around.</li>
+                <li class="main-body">2. <b>Remember and Decode Your Questionnaire</b>: Once You click on generate, Currently all that data is processed and forgotten, so if you press back, all that progress is gone.</li>
+                <li class="main-body">3. <b>Sleeker Design</b>: Those add and Remove buttons are an eyesore.</li>
+                <li class="main-body">4. <b>Multi Threading</b>: To support faster processing.</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>

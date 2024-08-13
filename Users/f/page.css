@@ -1,0 +1,61 @@
+*{
+    font-family: Arial;
+}
+
+h1{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+h2{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.question{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.options-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: left;
+    margin-bottom: 30px;
+}
+
+.option{
+    margin: 0px;
+}
+
+.single-option{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.tick{
+    position: absolute;
+    width: 40px;
+    top: -10px;
+}
+
+@media print {
+    .page-break {
+      page-break-before: always;
+    }
+  
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+  }
+
+.graph-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
