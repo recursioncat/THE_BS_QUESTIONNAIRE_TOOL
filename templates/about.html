@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS Questionnaire: About</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+</head>
+<body>
+    
+    <div class="all-about-me">
+        <h1>How was This Website Made</h1>
+        <P class="thanks-text1">This website was made as a tool to help people rapidly develop questionnaires. The Frontend was made with good ol' holy trinity of of <b>HTML, CSS and Javascript</b>(Vanilla). The Backend was developed using <b>Flask</b> and <b>Python</b>.</P>
+    
+        <P class="thanks-text1">The core idea is to accept data from the user and process it into believable questionnaire Responses. Data entered in the questionnaire template is converted into json and sent over to python. Python has several classes for handling Questions and Options and several functions that generate and scramble data to produce a final Questionnaire. The ticks that appear in the Questionnaire are images of real hand-drawn ticks, randomised using javascript. The Graphs for the Data section are made using <b>Matplotlib</b>, which is a famous python module for data visualization. There is also an <b>HTML Mapper</b> written in python which converts object code into html which was used for generating the final pdf.</P>
+    
+        <P class="thanks-text1">You can learn more about using this technology in in the <a href="/docs">docs</a> page. This project is open source and you can check it out and contribute <a href="https://github.com/recursioncat/CentralLib-Library_Management_with_python">here.</a></P>            
+    </div>
+    
+    
+    <div class="all-about-me">
+        <div class="About-Container">
+            <div class="about-me-text">
+                <h1>But Who is This Son of a Gun?</h1>
+                <p>Here's The thing.....Nobody Knows....Some speculate he is the son of a god Banished from the heavens after he dared questioned their Might. Perhaps he's just an Egomaniac. Ever since his fall He was burdened not with glorious purpose but by his entirely dullard personality and is currently studying BCA at an "OK" University in Kolkata.</p>
+                <p>However his god like wisdom enabled him to learn and understand things so fast that no other mortal could compete. He gained Expertise in python, built all sorts of tools, learnt Frontend Development and then Destroyed Flask by showing it Who's the boss. After months of research we have managed to gain access to some of his socials, they are linked below....</p>
+            </div>
+            <div class="img-container">
+                <img class="me" src="{{ url_for('static', filename='Images/' + 'New Project.png' ) }}" draggable="false">
+                <div class="background"></div>
+            </div>
+        </div>
+    
+        <div class="socials">
+            <a href="https://github.com/recursioncat"><img class="git" src="{{ url_for('static', filename='Images/icons8-github.svg' ) }}" draggable="false"></a>
+            <a href="https://www.instagram.com/i_amrc26/"><img src="{{ url_for('static', filename='Images/icons8-instagram.svg' ) }}" draggable="false"></a>
+            <a href="https://www.linkedin.com/in/rishit-chakraborty-2956ba304/"><img src="{{ url_for('static', filename='Images/icons8-linkedin.svg' ) }}" draggable="false"></a>
+        </div>
+    
+    </div>
+    
+    
+</body>
+</html>
