@@ -3,10 +3,18 @@ from Server.randomstring import genString
 from Server.JSONParser import makeQuestionnaire
 import os
 import shutil
+from datetime import timedelta
+from threading import Timer
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('Flask_Secret_key')
 list_of_Users = ['testusername260704Rishit']
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=2)
+
+def deleteuser(id):
+    list_of_Users.remove(id)
+    os.rmtree(f'Users/{id}')
+
 
 @app.route("/")
 def main():
@@ -45,9 +53,12 @@ def newRoom():
         return redirect(url_for('.home'))
 
     session["id"] = id
+    session.permanent = True
     if not os.path.isdir(f"users/{id}"):
         os.mkdir(f"users/{id}")
         list_of_Users.append(id)
+    t = Timer(2*3600, deleteuser, args=[session['id']])
+    t.start()
 
     session["path"] = f'Users/{id}'
     print(f"NEW USER: {id},\nPATH: {session['path']}")
@@ -61,12 +72,12 @@ def processQuestionnaire():
     try: 
         data = request.form['data']
         makeQuestionnaire(data)
-        # return render_template("DownloadReady.html", path = session["path"])
-        return render_template("DownloadReady.html", path = 'Users/RishitChakraborty')
+        return render_template("DownloadReady.html", path = session["path"])
+        # return render_template("DownloadReady.html", path = 'Users/RishitChakraborty')
 
     except Exception as e:
         return str(e)
-    
+     
 @app.route('/Users/<path:filename>')
 def serve_user_file(filename):
     return send_from_directory('Users', filename)

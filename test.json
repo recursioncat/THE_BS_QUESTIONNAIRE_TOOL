@@ -1,0 +1,14 @@
+{'amount': '1'0', 'title': 'Untitled Questionnaire', 'subhead': True, 'graphs': True, 'grapht': 'Pie', 'detail': 'Enter a Subheading, this is optional and can be removed from the final document.', 'questions': [
+        {'text': 'Hello', 'type': 'MCQ', 'algo': 'Random', 'optionList': [
+                {'check': False, 'text': 'Option 1', 'value': 0
+                },
+                {'check': False, 'text': 'Option 2', 'value': 0
+                },
+                {'check': False, 'text': 'Option 3', 'value': 0
+                },
+                {'check': False, 'text': 'Option 4', 'value': 0
+                }
+            ]
+        }
+    ]
+}

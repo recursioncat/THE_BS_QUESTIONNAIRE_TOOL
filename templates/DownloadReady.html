@@ -2,10 +2,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your File is Ready</title>
+    <title>Your Download is Ready</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/downloadReady.css') }}">
 </head>
 <body>
+    <h1>Your Download is Ready</h1>
+    <p>Click on the Link below to download. You will be redirected and a print dialogue box will appear, you can download your file from there, for more details refer the <a target="_blank" href="/docs">tutorial</a>.</p>
+    <p>This file will be available with your username for the next two hours.</p>
     <button onclick="download()">Download Your File</button>
+    <h1 id="9" class="left">Tutorial</h1>
+            <hr>
+            <p class="main-body">Click on the Generate option once you are done. PDF generation will be in progress. Once done, click on the <b>Download</b> button. You will be redirected to a page with your questionnaire and the <b>Print Dialogue Box</b> will open automatically. Preview your Document. Change <b>Destination</b> to Save as pdf and format as desired. Click on save and download your file.</p>
+
+            <img src="{{ url_for('static', filename='Images/redirect.png') }}" class="ref4">
+            <img src="{{ url_for('static', filename='Images/finalstep.png') }}" class="ref4">
+    
+    
     <script>
         function download(){
             const path = `{{ path }}` + "/output.html";
